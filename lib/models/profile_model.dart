@@ -1,9 +1,18 @@
-enum Status { mahasiswa, creativeTechnologist, contentCreator }
+enum StatusType { creative, content } 
 
 enum ProfileView { 
   detail,
   projects,
   hobbies
+}
+
+extension StatusExtension on StatusType {
+  String get label {
+    switch (this) {
+      case StatusType.creative: return 'Creative Technologist';
+      case StatusType.content: return 'Content Creator';
+    }
+  }
 }
 
 class Profile {
@@ -12,10 +21,9 @@ class Profile {
   final String jurusan;
   final String email;
   final String telepon;
-  final String fotoUrl; 
+  final String fotoPath;
   final List<String> hobi;
   final List<String> skill;
-  final Status status;
 
   Profile({
     required this.nama,
@@ -23,17 +31,8 @@ class Profile {
     required this.jurusan,
     required this.email,
     required this.telepon,
-    required this.fotoUrl,
+    required this.fotoPath,
     required this.hobi,
     required this.skill,
-    required this.status,
   });
-  
-  String get statusLabel {
-    switch (status) {
-      case Status.mahasiswa: return 'Mahasiswa';
-      case Status.creativeTechnologist: return 'Creative Technologist';
-      case Status.contentCreator: return 'Content Creator';
-    }
-  }
 }

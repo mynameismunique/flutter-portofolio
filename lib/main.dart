@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'UTS Munique Profile',
       debugShowCheckedModeBanner: false,
+      
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -35,14 +36,16 @@ class _MyAppState extends State<MyApp> {
         ),
         textTheme: GoogleFonts.poppinsTextTheme(ThemeData.light().textTheme),
       ),
+      
       darkTheme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.pink,
+          seedColor: Colors.amber.shade300,
           brightness: Brightness.dark,
         ),
         textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
       ),
+      
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
       
       home: ProfilePage(toggleTheme: toggleTheme),
