@@ -1,16 +1,15 @@
-# uts
+🚀 Flutter Profile App - Personal Portfolio Showcase
+Aplikasi profil pribadi (Single-Page Application) yang dikembangkan menggunakan Flutter sebagai pemenuhan Ujian Tengah Semester (UTS) mata kuliah Pemrograman Mobile 2. Proyek ini mendemonstrasikan kemampuan dalam membangun UI yang modern, responsive, dan interaktif.
 
-A new Flutter project.
+✨ Fitur Kunci
+Desain Modern (Card Melayang): Menggunakan kombinasi Stack dan Card untuk menghasilkan header yang visually engaging dan overlap.
 
-## Getting Started
+Navigasi 3-Tab: Struktur konten dibagi menjadi Profile, Projects, dan Contact untuk organisasi data yang logis.
 
-This project is a starting point for a Flutter application.
+Pengelolaan Status Dinamis: Menerapkan state (setState) untuk toggle status profesional (Creative Technologist / Content Creator).
 
-A few resources to get you started if this is your first Flutter project:
+Image Slider Kustom: Fitur slider gambar horizontal di bagian Projects menggunakan ListView.builder (rasio 4:3) untuk menampilkan galeri visual.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Theme Control: Fitur toggle mode gelap/terang (Light/Dark Mode), memenuhi kriteria bonus UTS.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Pemisahan Arsitektur: Struktur kode dipisahkan secara profesional menjadi models/, data/, widgets/, dan pages/.
