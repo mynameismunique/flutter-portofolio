@@ -67,8 +67,11 @@ class _ProfilePageState extends State<ProfilePage> {
   }
   
   Widget _buildImageSlider() {
+    const double imageWidth = 150.0; 
+    const double imageHeight = 230.0;
+
     return SizedBox(
-      height: 150, 
+      height: imageHeight, 
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -80,10 +83,10 @@ class _ProfilePageState extends State<ProfilePage> {
               borderRadius: BorderRadius.circular(15.0),
               child: Image.asset(
                 galleryImagePaths[index],
-                width: 200.0, // Rasio 4:3 (150 * 4/3)
+                width: imageWidth,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => Container(
-                  width: 200.0,
+                  width: imageWidth,
                   color: Colors.grey.shade300,
                   child: Center(child: Icon(Icons.broken_image)),
                 ),
@@ -99,15 +102,15 @@ class _ProfilePageState extends State<ProfilePage> {
     final textColor = Theme.of(context).colorScheme.onBackground;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-          child: HighlightTitle(title: 'GALERI KARYA'),
+          child: HighlightTitle(title: 'KARYA VISUAL'),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text('Kumpulan video, tulisan, dan karya lainnya yang pernah saya buat.', style: TextStyle(color: Colors.grey.shade600)),
+          child: Text('Kumpulan video, tulisan, dan karya visual yang pernah saya buat.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600)),
         ),
         
         const SizedBox(height: 20),
@@ -116,41 +119,45 @@ class _ProfilePageState extends State<ProfilePage> {
         
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 16.0, right: 16.0, bottom: 20),
-          child: HighlightTitle(title: 'KARYA AUDIO VISUAL'),
+          child: HighlightTitle(title: 'KARYA PEMROGRAMAN'),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text('Subscribe channel YouTube Sarjana Wibu untuk update video terbaru.', style: TextStyle(color: Colors.grey.shade600)),
+          child: Text('Kumpulan program dan *source code* yang pernah saya buat.', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey.shade600)),
         ),
 
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
-          itemCount: projectData.length, 
-          itemBuilder: (context, index) {
-            final project = projectData[index];
-            return Card(
-              elevation: 4,
-              margin: const EdgeInsets.only(bottom: 16),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              child: ListTile(
-                contentPadding: const EdgeInsets.all(15),
-                leading: Icon(Icons.code_rounded, color: textColor, size: 40),
-                title: Text('${project['title']}', style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16)),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 4),
-                    Text('${project['desc']}'),
-                    const SizedBox(height: 4),
-                    Text('Tahun: ${project['year']}', style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 12)),
-                  ],
-                ),
-                isThreeLine: true,
-              ),
-            );
-          },
+        Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+              itemCount: projectData.length, 
+              itemBuilder: (context, index) {
+                final project = projectData[index];
+                return Card(
+                  elevation: 4,
+                  margin: const EdgeInsets.only(bottom: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(15),
+                    leading: Icon(Icons.code_rounded, color: textColor, size: 40),
+                    title: Text('${project['title']}', style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16)),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 4),
+                        Text('${project['desc']}'),
+                        const SizedBox(height: 4),
+                        Text('Tahun: ${project['year']}', style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 12)),
+                      ],
+                    ),
+                    isThreeLine: true,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         const SizedBox(height: 40),
       ],
@@ -162,8 +169,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Column(
       children: [
-        InfoCard(icon: Icons.email, text: userProfile.email, label: 'Email'),
-        InfoCard(icon: Icons.phone, text: userProfile.telepon, label: 'WhatsApp'),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: 10.0), child: InfoCard(icon: Icons.email, text: userProfile.email, label: 'Email')),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: 10.0), child: InfoCard(icon: Icons.phone, text: userProfile.telepon, label: 'WhatsApp')),
         const SizedBox(height: 20),
         
         ListView.builder(
@@ -176,6 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
             return Card(
               margin: const EdgeInsets.only(bottom: 10),
               child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 leading: Icon(contact['icon'], color: textColor),
                 title: Text(contact['label'].toString()),
                 subtitle: Text(contact['url'].toString()),
@@ -195,12 +203,16 @@ class _ProfilePageState extends State<ProfilePage> {
   
   Widget _buildNavButton({required String label, required IconData icon, required ProfileView mode, required bool isActive}) {
     return TextButton.icon(
-      icon: Icon(icon, color: isActive ? Theme.of(context).primaryColor : Colors.grey),
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      ),
+      icon: Icon(icon, color: isActive ? Theme.of(context).primaryColor : Colors.grey, size: 18),
       label: Text(
         label,
         style: TextStyle(
           color: isActive ? Theme.of(context).primaryColor : Colors.grey,
           fontWeight: FontWeight.bold,
+          fontSize: 12,
         ),
       ),
       onPressed: () {
@@ -216,7 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final primaryColor = Theme.of(context).primaryColor;
 
     return ActionChip(
-      label: Text(type.label),
+      label: Text(type.label, style: const TextStyle(fontSize: 12)),
       backgroundColor: isActive ? primaryColor.withOpacity(0.2) : null,
       side: BorderSide(color: isActive ? primaryColor : Colors.grey.shade400),
       onPressed: () {
@@ -229,7 +241,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildContactButton() {
     return Container(
-      width: 200,
+      width: 160,
+      height: 38,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         gradient: LinearGradient(
@@ -239,8 +252,8 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
       child: TextButton.icon(
-        icon: Icon(Icons.send, color: Colors.white, size: 16),
-        label: Text("Contact Me!", style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold)),
+        icon: Icon(Icons.send, color: Colors.white, size: 14),
+        label: Text("Contact Me!", style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12)),
         onPressed: () {
           setState(() {
             _currentView = ProfileView.hobbies; 
@@ -257,8 +270,15 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildTagSection("Skills", userProfile.skill, brightness),
-        _buildTagSection("Hobbies", userProfile.hobi, brightness),
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+            child: HighlightTitle(title: 'KEAHLIAN & HOBI'),
+          ),
+        ),
+        
+        _buildTagSection("Keahlian", userProfile.skill, brightness),
+        _buildTagSection("Hobi", userProfile.hobi, brightness),
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -302,6 +322,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final surfaceColor = Theme.of(context).scaffoldBackgroundColor;
     final cardColor = Theme.of(context).cardColor;
     final primaryColor = Theme.of(context).primaryColor;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SingleChildScrollView( 
@@ -332,19 +353,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 Positioned(
                   top: 100, 
-                  left: 20,
-                  right: 20,
+                  left: screenWidth * 0.05,
+                  right: screenWidth * 0.05,
                   child: Card(
                     color: cardColor,
                     elevation: 10,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 70.0, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 70.0, horizontal: 10),
                       child: Column(
                         children: [
-                          Text(userProfile.nama, style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.bold)),
+                          Text(userProfile.nama, style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold)),
                           const SizedBox(height: 5),
-                          Text(currentStatusText, style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey)),
+                          Text(currentStatusText, style: GoogleFonts.poppins(fontSize: 13, color: Colors.grey)),
                           const SizedBox(height: 15),
                           _buildContactButton(),
                         ],
@@ -364,7 +385,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 180),
             
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

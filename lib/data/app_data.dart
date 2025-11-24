@@ -8,7 +8,7 @@ final Profile userProfile = Profile(
   email: 'Mugniramdani@outlook.com',
   telepon: '+62 815-7993-3021',
   fotoPath: 'assets/img/profile_photo.jpg',
-  hobi: ['Writing Fiction', 'Cosplay', 'Anime Analysis', 'Podcasting'],
+  hobi: ['Writing Fiction', 'Anime Analysis', 'Podcasting'],
   skill: ['Flutter', 'PHP', 'Java', 'Writing', 'Unity AR/VR'],
 );
 
@@ -19,7 +19,7 @@ const String bioText =
 const String headerAssetPath = 'assets/img/header_bg.jpg';
 
 final List<String> galleryImagePaths = const [
-  'assets/img/slide_img1.jpeg',
+  'assets/img/slide_img1.jpg',
   'assets/img/slide_img2.jpg',
   'assets/img/slide_img3.jpg',
   'assets/img/slide_img4.jpg',
@@ -27,26 +27,26 @@ final List<String> galleryImagePaths = const [
 
 final List<Map<String, String>> projectData = const [
   {
-    'title': 'Sarjana Wibu (Podcast)',
+    'title': 'Podcast Opinique',
     'desc': 'Konten analisis anime mendalam berdasarkan Opini pribadi.',
     'year': '2025',
   },
   {
-    'title': 'Augmented Reality (AR) Prototype',
-    'desc': 'Mengembangkan interaksi digital menggunakan Unity dan Vuforia.',
-    'year': '2024',
+    'title': 'Augmented Reality (AR) Aqua',
+    'desc': 'Membuat AR Sederhana tentang informasi karakter Aqua dari Konosuba.',
+    'year': '2025',
   },
   {
     'title': 'Sistem Inventory Excel',
-    'desc': 'Otomatisasi data inventaris menggunakan VBA/PHP untuk UMKM.',
+    'desc': 'Otomatisasi data inventaris menggunakan PHP untuk pengelolaan barang perusahaan.',
     'year': '2022',
   },
 ];
 
 
 final List<Map<String, dynamic>> contactData = const [
-  {'label': 'GitHub', 'icon': Icons.code, 'url': 'https://github.com/yourusername'},
-  {'label': 'LinkedIn', 'icon': Icons.business_center, 'url': 'https://linkedin.com/in/yourprofile'},
-  {'label': 'Instagram', 'icon': Icons.camera_alt, 'url': 'https://instagram.com/munique_arts'},
-  {'label': 'Email', 'icon': Icons.email, 'url': 'mailto:contact@munique.my.id'},
+  {'label': 'GitHub', 'icon': Icons.code, 'url': 'https://github.com/mynameismunique'},
+  {'label': 'LinkedIn', 'icon': Icons.business_center, 'url': 'https://linkedin.com/in/mugniramdani'},
+  {'label': 'Instagram', 'icon': Icons.camera_alt, 'url': 'https://instagram.com/mynameismunique'},
+  {'label': 'Email', 'icon': Icons.email, 'url': 'kerjasama@munique.my.id'},
 ];
